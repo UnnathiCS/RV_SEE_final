@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RV READY:login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #CB6CE6; /* Matching background color */
+            color: white; /* White text */
+            font-family: 'Poppins', sans-serif; /* Poppins font */
+            text-align: center; /* Center-align all text */
+            margin: 0;
+            padding: 0;
+            background-image: url('static/images/back.gif');
+        }
+        header {
+            padding: 50px 20px;
+        }
+        .logo {
+            width: 230px;
+            height: 230px;
+        }
+        h2 {
+            color: #FFFFFF; /* White headings */
+            margin-top: 20px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            background-color: #CB6CE6; /* Matching background color */
+            color: white;
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            width: 80%;
+            max-width: 300px;
+        }
+        input[type="submit"] {
+            background-color: #FFFFFF; /* White submit button */
+            color: #CB6CE6; /* Matching text color */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        input[type="submit"]:hover {
+            background-color: #ffd700; /* Lighter gold on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Student Events Finder Logo" class="logo">
+        <h2>Login</h2>
+        <form method="post" action="/login">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+            <input type="submit" value="Login">
+        </form>
+    </header>
+</body>
+</html>

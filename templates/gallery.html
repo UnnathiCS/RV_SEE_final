@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previous Events Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eec1fc;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        .header {
+            background: #6a1b9a;
+            color: #fff;
+            padding: 20px 0;
+            border-bottom: #ab47bc 3px solid;
+            text-align: center;
+        }
+        .header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+            margin-left: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .main-content {
+            margin: 20px 0;
+        }
+        .club-section {
+            margin-bottom: 40px;
+        }
+        .club-section h2 {
+            background: #ab47bc;
+            color: #fff;
+            padding: 10px;
+            margin: 0;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .event {
+            background: #e2c6fe;
+            margin: 20px 0;
+            padding: 20px;
+            border: #ddd 1px solid;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .event:hover {
+            transform: translateY(-5px);
+        }
+        .event h3 {
+            margin: 0 0 10px 0;
+            color: #6a1b9a;
+        }
+        .event p {
+            margin: 10px 0;
+            color: #555;
+        }
+        .event img {
+            max-width: 30%;
+            height: auto;
+            margin: 10px 1%;
+            border-radius: 5px;
+            border: 2px solid #ddd;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .event img:hover {
+            transform: scale(1.05);
+        }
+        @media (max-width: 768px) {
+            .header nav {
+                text-align: center;
+                margin-top: 20px;
+            }
+            .header a {
+                display: block;
+                padding: 10px 0;
+            }
+            .event img {
+                max-width: 100%;
+                margin: 10px 0;
+            }
+        }
+        nav {
+            background-color: #640381c9;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position:inherit;
+            width: 98%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            background-color: #ffd700;
+            color: #16034d;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Events Gallery</h1>
+        </div>
+    </header>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('clubs') }}">Clubs</a>
+        <a href="{{ url_for('gallery') }}">Gallery</a>
+        <a href="{{ url_for('review') }}">Review</a>
+    </nav>
+    <div class="container">
+        <div class="main-content">
+            <!-- Club 1 Section -->
+            <div class="club-section">
+                <h2>Photography Club</h2>
+                <div class="event">
+                    <h3>Photo Walk 2023</h3>
+                    <p>Date: March 5, 2023</p>
+                    <p>Description: A day-long event where club members explored the city and took stunning photographs.</p>
+                    <img src="{{ url_for('static', filename='images/sc_1.jpeg') }}" alt="Photo Walk 2023">
+                    <img src="{{ url_for('static', filename='images/sc_2.jpeg') }}" alt="Photo Walk 2023">
+                    <img src="{{ url_for('static', filename='images/sc_3.jpeg') }}" alt="Photo Walk 2023">
+                </div>
+            </div>
+
+            <!-- Club 2 Section -->
+            <div class="club-section">
+                <h2>Expressions Club</h2>
+                <div class="event">
+                    <h3>Dance Talent Show</h3>
+                    <p>Date: April 15, 2023</p>
+                    <p>Description: A club focused on reaching the hidden dance talents.</p>
+                    <img src="{{ url_for('static', filename='images/dance.jpeg') }}" alt="Expressions Club">
+                    <img src="{{ url_for('static', filename='images/dance_2.jpeg') }}" alt="Expressions Club">
+                    <img src="{{ url_for('static', filename='images/dance_3.png') }}" alt="Expressions Club">
+                </div>
+            </div>
+
+            <!-- Club 3 Section -->
+            <div class="club-section">
+                <h2>Open Mike Club</h2>
+                <div class="event">
+                    <h3>Open Mic Night</h3>
+                    <p>Date: February 20, 2023</p>
+                    <p>Description: A great opportunity for those who want to light up with music.</p>
+                    <img src="{{ url_for('static', filename='images/sing.jpeg') }}" alt="Open Mic Night">
+                    <img src="{{ url_for('static', filename='images/sing_2.jpeg') }}" alt="Open Mic Night">
+                    <img src="{{ url_for('static', filename='images/sing_3.png') }}" alt="Open Mic Night">
+                </div>
+            </div>
+
+            <!-- Club 4 Section -->
+            <div class="club-section">
+                <h2>Happy Tails</h2>
+                <div class="event">
+                    <h3>Animal Care Event</h3>
+                    <p>Date: March 25, 2023</p>
+                    <p>Description: A club to show our love towards the lives which love us.</p>
+                    <img src="{{ url_for('static', filename='images/dog.jpeg') }}" alt="Happy Tails">
+                    <img src="{{ url_for('static', filename='images/dog_2.jpeg') }}" alt="Happy Tails">
+                    <img src="{{ url_for('static', filename='images/dog_3.png') }}" alt="Happy Tails">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

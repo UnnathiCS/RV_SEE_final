@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RV READY:index</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #370445;
+            background-image: url('static/images/back.gif');
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .logo {
+            width: 310px;
+            height: 310px;
+        }
+
+        .logo_login {
+            width: 100px;
+            height: 100px;
+        }
+
+        .login-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #FFFFFF;
+            color: #CB6CE6;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* CSS for Typewriter Animation */
+        .typewriter {
+            overflow: hidden;
+            /* Ensures the text is not revealed until the animation */
+            
+            white-space: nowrap;
+            /* Keeps the content on a single line */
+            margin: 0 auto;
+            /* Gives some spacing and centers the text */
+            letter-spacing: .05em;
+            /* Adjust as needed */
+            animation: typing 3s steps(50, end), blink-caret .75s step-end infinite;
+        }
+
+        /* The typing effect */
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        /* The typewriter cursor blinking effect */
+        
+        h1 {
+            font-size: 1.9em;
+            margin: 20px 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .dashboard,
+        .interest-selection,
+        .gallery,
+        .reviews,
+        .contact-us {
+            background-color: rgba(0, 0, 0, 0.148);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .events,
+        .photos,
+        .reviews-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .register-btn,
+        button[type="submit"] {
+            background-color: #FFFFFF;
+            color: #CB6CE6;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        button[type="submit"] {
+            margin-top: 20px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #CB6CE6;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/logo.gif') }}" alt="Student Events Finder Logo" class="logo">
+        <h1 class="typewriter">Fun, adventure and memories begin here..</h1>
+        <a href="{{ url_for('login') }}" class="login-btn">Login</a>
+    </header>
+    <main>
+        <section class="dashboard">
+            <h2>Ongoing Events</h2>
+            <div class="events">
+                <!-- Ongoing events will be listed here -->
+            </div>
+            <a href="{{ url_for('dashboard_user', username='Unnathi') }}" class="register-btn">Register</a>
+        </section>
+        <section class="interest-selection">
+            <h2>Select Your Interests</h2>
+            <form id="interest-form">
+                <!-- Add your form elements here -->
+                <a href="{{ url_for('interests') }}" class="register-btn">Find Events</a>
+            </form>
+        </section>
+        <section class="gallery">
+            <h2>Gallery</h2>
+            <a href="{{ url_for('gallery') }}" class="register-btn">View</a>
+        </section>
+
+
+        <section class="reviews">
+            <h2>Reviews</h2>
+            <div class="reviews-list">
+                <a href="{{ url_for('review') }}" class="register-btn">View</a>
+            </div>
+        </section>
+        <section class="reviews">
+            <h2>Clubs</h2>
+            <div class="reviews-list"></div>
+            <a href="{{ url_for('clubs') }}" class="register-btn">Explore Clubs</a>
+        </section>
+        <section class="contact-us">
+            <h2>Contact Us</h2>
+            <form id="contact-form" action="{{ url_for('contact') }}" method="post" onsubmit="showPopup()">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+        <script>
+            function showPopup(event) {
+                event.preventDefault(); // Prevent the default form submission behavior
+                alert("Message sent successfully!");
+            }
+        </script>
+    </main>
+</body>
+
+</html>

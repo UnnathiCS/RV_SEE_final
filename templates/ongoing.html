@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ongoing Events - Student Events Finder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #CB6CE6;
+            
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #640381c9;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 99%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            background-color: #ffd700;
+            color: #16034d;
+            border-radius: 5px;
+        }
+
+        header {
+            padding: 70px 20px 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow: hidden;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            transition: transform 0.5s ease-in-out;
+            padding-right: 20px;
+        }
+
+        .carousel-slide img {
+            width: auto;
+            border-radius: 10px;
+        }
+
+        .event-details {
+            text-align: left;
+            padding: 10px;
+        }
+
+        .register-btn {
+            display: inline-block;
+            background-color: #FFFFFF;
+            color: #CB6CE6;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .register-btn:hover {
+            background-color: #ffd700;
+            color: #16034d;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: black;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            color: black;
+        }
+
+        .submit-btn {
+            background-color: #CB6CE6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .submit-btn:hover {
+            background-color: #16034d;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #640381c9;
+            border: 1px solid #888;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('clubs') }}">Clubs</a>
+        <a href="{{ url_for('gallery') }}">Gallery</a>
+        <a href="{{ url_for('review') }}">Review</a>
+    </nav>
+    <header>
+        <h1>Ongoing Events</h1>
+    </header>
+    <main>
+        <div class="carousel">
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="{{ url_for('static', filename='images/trucking.png') }}" alt="Event 1" width="450" height="350">
+                    <div class="event-details">
+                        <p>Trekking</p>
+                        <p>Day of Happening: May 30, 2024</p>
+                        <p>Last Day to Register: May 28, 2024</p>
+                        <span class="register-btn" onclick="openModal()">Register</span>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="{{ url_for('static', filename='images/debate.jpg') }}" alt="Event 1" width="450" height="350">
+                    <div class="event-details">
+                        <p>Debate</p>
+                        <p>Day of Happening: May 30, 2024</p>
+                        <p>Last Day to Register: May 28, 2024</p>
+                        <span class="register-btn" onclick="openModal()">Register</span>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="{{ url_for('static', filename='images/DJ_night.jpeg') }}" alt="Event 1" width="450" height="350">
+                    <div class="event-details">
+                        <p>DJ night</p>
+                        <p>Day of Happening: May 30, 2024</p>
+                        <p>Last Day to Register: May 28, 2024</p>
+                        <span class="register-btn" onclick="openModal()">Register</span>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="{{ url_for('static', filename='images/deworm.jpg') }}" alt="Event 1" width="350" height="350">
+                    <img src="{{ url_for('static', filename='images/deworm_3.png') }}" alt="Event 1" width="350" height="350">
+                    <div class="event-details">
+                        <p>Deworming Campaign</p>
+                        <p>Day of Happening: May 31, 2024</p>
+                        <p>Last Day to Register for volunteering: May 28, 2024</p>
+                        <span class="register-btn" onclick="openModal()">Register</span>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="{{ url_for('static', filename='images/coding.png') }}" alt="Event 1" width="350" height="350">
+                    <div class="event-details">
+                        <p>Code RVU</p>
+                        <p>Day of Happening: June 14, 2024</p>
+                        <p>Last Day to Register: June 10, 2024</p>
+                        <p>On Spot Registration available</p>
+                        <span class="register-btn" onclick="openModal()">Register</span>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="{{ url_for('static', filename='images/seminar.jpg') }}" alt="Event 1" width="350" height="350">
+                    <div class="event-details">
+                        <p>Seminar-AIML</p>
+                        <p>Day of Happening: June 10, 2024</p>
+                        <p>Last Day to Register: June 5, 2024</p>
+                        <p>On Spot Registration available</p>
+                        <span class="register-btn" onclick="openModal()">Register</span>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="{{ url_for('static', filename='images/sports.jpg') }}" alt="Event 1" width="350" height="350">
+                    <div class="event-details">
+                        <p>Sports day</p>
+                        <p>Day of Happening: June 17, 2024</p>
+                        <p>Last Day to Register: June 5, 2024</p>
+                        <span class="register-btn" onclick="openModal()">Register</span>
+                    </div>
+                </div>
+                <!-- Add more slides as needed -->
+            </div>
+        </div>
+    </main>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Register for the Event</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div id="popup" class="popup">
+        <span class="popup-close" onclick="closePopup()">&times;</span>
+        <p id="popupMessage"></p>
+    </div>
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.transform = `translateX(${-index * 100}%)`;
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        setInterval(nextSlide, 4000);
+
+        showSlide(currentIndex);
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('myModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function (event) {
+            const modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            document.getElementById('myModal').style.display = 'none';
+
+            // Show popup
+            const popup = document.getElementById('popup');
+            const popupMessage = document.getElementById('popupMessage');
+            popupMessage.textContent = `${name}, you have been registered for the event successfully.`;
+            popup.style.display = 'block';
+        });
+
+        // Function to close the popup
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

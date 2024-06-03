@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Clubs</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #cb6ce6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #cb6ce6; /* Match body background color */
+            width: 100%;
+        }
+
+        .logo img {
+            max-width: 200px; /* Adjust size as needed */
+            height: auto;
+        }
+
+        .heading h1 {
+            color: #ffffff; /* White text color */
+            font-size: 24px;
+            margin-top: 10px;
+            font-family: Poppins;
+        }
+
+        .clubs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+
+        .club-item {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .club-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .club-item p {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #ffffff;
+        }
+
+        .club-item:hover {
+            transform: scale(1.05);
+        }
+        nav {
+            background-color: #640381c9;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position:inherit;
+            width: 97%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            background-color: #ffd700;
+            color: #16034d;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.gif') }}" alt="Student Events Finder Logo" class="logo">
+        </div>
+        <div class="heading">
+            <h1>Our Clubs</h1>
+        </div>
+    </header>
+    <main>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('clubs') }}">Clubs</a>
+            <a href="{{ url_for('gallery') }}">Gallery</a>
+            <a href="{{ url_for('review') }}">Review</a>
+        </nav>
+        <div class="clubs-container">
+            
+            <div class="club-item">
+                <img src="{{ url_for('static', filename='images/viksha.jpeg') }}" alt="Club 2">
+                <p>Coding club</p>
+            </div>
+            <div class="club-item">
+                <img src="{{ url_for('static', filename='images/rotaract.jpeg') }}" alt="Club 3">
+                <p>Community service</p>
+            </div>
+            <div class="club-item">
+                <img src="{{ url_for('static', filename='images/raag.png') }}" alt="Club 4">
+                <p>for singing enthusiasts</p>
+            </div>
+            <div class="club-item">
+                <img src="{{ url_for('static', filename='images/legacy.png') }}" alt="Club 5">
+                <p>Event organizers in campus</p>
+            </div>
+            <div class="club-item">
+                <img src="{{ url_for('static', filename='images/kala.png') }}" alt="Club 6">
+                <p>Official Art Club of RV University</p>
+            </div>
+            <div class="club-item">
+                <img src="{{ url_for('static', filename='images/happy.png') }}" alt="Club 1">
+                <p>Club for Dog lovers</p>
+            </div>
+            <div class="club-item">
+                <img src="{{ url_for('static', filename='images/isekai.png') }}" alt="Club 7">
+                <p>Anime lover's club</p>
+            </div>
+            <div class="club-item">
+                <img src="{{ url_for('static', filename='images/green.png') }}" alt="Club 8">
+                <p>Planet & Nature enthusiasts</p>
+            </div>
+            <div class="club-item">
+                <img src="{{ url_for('static', filename='images/expression.jpeg') }}" alt="Club 9">
+                <p>Dancers club</p>
+            </div>
+            <div class="club-item">
+                <img src="{{ url_for('static', filename='images/debsoc.png') }}" alt="Club 10">
+                <p>Debate Society</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

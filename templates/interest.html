@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Interests</title>
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #cb6ce6;
+    background-image: url('static/images/back.gif');
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #cb6ce6; /* Match body background color */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.logo img {
+    max-width:50px; /* Adjust size as needed */
+    height: auto;
+}
+
+.heading h1 {
+    color: #ffffff; /* White text color */
+    font-size: 24px;
+    margin-top: 10px;
+    font-family:Poppins;
+    padding-top: 50px;
+}
+
+.carousel-container {
+    max-width: 600px; /* Adjust max-width as needed */
+    background-color:#cb6ce6 ;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 90px auto; 
+    text-align: center;/* Adjust margin-top to position carousel below header */
+    max-height: 600px;
+}
+
+.carousel {
+    overflow:hidden;
+    width:100%;
+    height:auto;
+    margin: 0 auto; /* Hide overflow to prevent items extending */
+}
+
+.carousel-item {
+    display: none; 
+    text-align: center;/* Hide all items initially */
+}
+
+.carousel-item.active {
+    display:flex;
+    margin: 0 auto; /* Display only active item */
+}
+
+.carousel-item img {
+    max-width: 100%; /* Ensure images resize to fit container */
+    height: auto;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: opacity 0.3s ease;
+}
+
+.controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.controls button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 1px solid #333333;
+    color: #333333;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
+section {
+            background-color:#e5a9f6;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+        section h2 {
+            margin-top: 0;
+            align-self:center;
+        }
+        .events-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .event {
+            width: 25%;
+            background-color: #d779f0;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            text-align: left;
+        }
+        .event h3 {
+            margin-top: 0;
+        }
+        .event p {
+            margin-bottom: 10px;
+        }
+        .event ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .event ul li:before {
+            content: "•";
+            color: #4CAF50;
+            font-weight: bold;
+            display:flex;
+            width: 1em;
+            margin-left: -1em;
+        }
+        .register-btn {
+            background-color:#ace95d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .register-btn:hover{
+            background-color:#d0efa7;
+        }
+        nav {
+            background-color: #640381c9;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position:inherit;
+            width: 94%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            background-color: #ffd700;
+            color: #16034d;
+            border-radius: 5px;
+        }
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('clubs') }}">Clubs</a>
+            <a href="{{ url_for('gallery') }}">Gallery</a>
+            <a href="{{ url_for('review') }}">Review</a>
+        </nav>
+        <div class="logo">
+            
+        </div>
+        <div class="heading">
+            <h1>What are you in the mood for?</h1>
+        </div>
+    </header>
+    <main>
+        <div class="carousel-container">
+            <div id="carousel" class="carousel">
+                <div class="carousel-item">
+                    <a href="#fun">
+                        <img src="{{ url_for('static', filename='images/fun.gif') }}" alt="GIF 1">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#tails">
+                        <img src="{{ url_for('static', filename='images/tails.gif') }}" alt="GIF 2">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#adventure">
+                        <img src="{{ url_for('static', filename='images/adventure.gif') }}" alt="GIF 2">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#tech">
+                        <img src="{{ url_for('static', filename='images/tech.gif') }}" alt="GIF 2">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#academic">
+                        <img src="{{ url_for('static', filename='images/academic.gif') }}" alt="GIF 2">
+                    </a>
+                </div>
+                
+            </div>
+            <div class="controls">
+                <button id="prevBtn"> < </button>
+                <button id="nextBtn"> > </button>
+            </div>
+        </div>
+    
+    <section id="fun">
+        <h2>FUN</h2>
+        <div class="events-container">
+            <div class="event">
+                <h3>DJ Night</h3>
+                <p>Join us for a night of music,food and good times!</p>
+                <ul>
+                    <li>Hosted by our Fiesta Club</li>
+                    <li>Date: May 30, 2024, 6pm onwards</li>
+                    <li>Venue: RV Grounds</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+            <div class="event">
+                <h3>Karaoke Party</h3>
+                <p>Sing your heart out at our karaoke party!</p>
+                <ul>
+                    <li>Hosted by our Antara Club</li>
+                    <li>Date: June 2, 2024, 4pm onwards</li>
+                    <li>Venue: Biotech Seminar Hall</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+            <div class="event">
+                <h3>Movie Marathon</h3>
+                <p>Enjoy a marathon of your favorite movies.</p>
+                <ul>
+                    <li>Hosted by our TIFA Club</li>
+                    <li>Date: June 20, 2024, 5pm onwards</li>
+                    <li>Venue: IEM Auditorium</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="academic">
+        <h2>BATTLE OF THE INTELLECTS</h2>
+        <div class="events-container">
+            <div class="event">
+                <h3>Debate Competition</h3>
+                <p>Participate in our annual debate competition!</p>
+                <ul>
+                    <li>Hosted by our MUNSOC Club</li>
+                    <li>Date: June 10, 2024</li>
+                    <li>Venue: RVU Clubhouse</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+            <div class="event">
+                <h3>TedX Talk</h3>
+                <p>Listen to expert taks and expand your horizons.</p>
+                <ul>
+                    <li>Hosted by our OpenMike Club</li>
+                    <li>Date: July 5-6, 2024</li>
+                    <li>Venue: Civil Engineering Auditorium</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+            <div class="event">
+                <h3>Quiz Bowl</h3>
+                <p>Test your knowledge in our quiz bowl event.</p>
+                <ul>
+                    <li>Hosted by our VibeTribe Club</li>
+                    <li>Date: July 15, 2024</li>
+                    <li>Venue: Will be conducted online</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="adventure">
+        <h2>ADVENTURE</h2>
+        <div class="events-container">
+            <div class="event">
+                <h3>Hiking Trip</h3>
+                <p>Join us for an adventurous hiking trip!</p>
+                <ul>
+                    <li>Hosted by our Hiking Club</li>
+                    <li>Date: July 20, 2024</li>
+                    <li>Venue: Skandagiri Hills</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+            <div class="event">
+                <h3>Wildlife Photography Workshop</h3>
+                <p>Learn wildlife photography basics with our workshop.</p>
+                <ul>
+                    <li>Hosted by our Photography Club</li>
+                    <li>Date: August 5, 2024</li>
+                    <li>Venue: Bannerghatta National Park</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+            <div class="event">
+                <h3>Camping Weekend</h3>
+                <p>Experience a weekend of camping under the stars.</p>
+                <ul>
+                    <li>Hosted by our Hiking Club</li>
+                    <li>Date: August 1-3, 2024</li>
+                    <li>Venue: Doddaballapur Campground</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech">
+        <h2>TECH</h2>
+        <div class="events-container">
+            <div class="event">
+                <h3>Web Development Bootcamp</h3>
+                <p>Learn web development from industry experts.</p>
+                <ul>
+                    <li>Hosted by our Tenacity Club</li>
+                    <li>Date: October 10-12, 2024</li>
+                    <li>Venue: IEM Auditorium</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+            <div class="event">
+                <h3>Hackathon</h3>
+                <p>Compete in our 24 hour hackathon.</p>
+                <ul>
+                    <li>Hosted by our Viksha Club</li>
+                    <li>Date: November 20, 2024</li>
+                    <li>Venue: IEM Seminar Hall</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+            <div class="event">
+                <h3>Blockchain Seminar</h3>
+                <p>Explore the future of blockchain technology.</p>
+                <ul>
+                    <li>Hosted by our GDSC Club</li>
+                    <li>Date: December 5, 2024</li>
+                    <li>Venue:RV Auditorium</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="tails">
+        <h2>HAPPY TAILS</h2>
+        <div class="events-container">
+            <div class="event">
+                <h3>Animal Shelter Volunteering</h3>
+                <p>Help out at the local animal shelter.</p>
+                <ul>
+                    <li>Date: July 10, 2024</li>
+                    <li>Venue: Local Animal Rescue Center</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+            <div class="event">
+                <h3>De-Worming Drive</h3>
+                <p>Join us in this drive to take care of our beloved animals.</p>
+                <ul>
+                    <li>Date: August 15, 2024</li>
+                    <li>Venue: RV grounds</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+            <div class="event">
+                <h3>Ramp Walk</h3>
+                <p>Join us in the this unique ramp walk starring our four-legged friends.</p>
+                <ul>
+                    <li>Date: September 30, 2024</li>
+                    <li>Venue: RV Grounds</li>
+                </ul>
+                <span class="register-btn" onclick="openModal()">Register</span>
+            </div>
+        </main>
+       
+        </body>
+</html>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const carouselItems = document.querySelectorAll(".carousel-item");
+    const totalItems = carouselItems.length;
+    let currentIndex = 0;
+    const intervalTime = 3000; // Interval time in milliseconds (3 seconds)
+    let slideInterval;
+
+    // Function to show current slide
+    function showSlide(index) {
+        // Hide all slides
+        carouselItems.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        // Display the current slide
+        carouselItems[index].classList.add("active");
+    }
+
+    // Function to move to the next slide
+    function nextSlide() {
+        currentIndex++;
+        if (currentIndex >= totalItems) {
+            currentIndex = 0; // Wrap around to the first slide
+        }
+        showSlide(currentIndex);
+    }
+
+    // Function to move to the previous slide
+    function prevSlide() {
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = totalItems - 1; // Wrap around to the last slide
+        }
+        showSlide(currentIndex);
+    }
+
+    // Automatic sliding
+    function startSlide() {
+        slideInterval = setInterval(nextSlide, intervalTime);
+    }
+
+    // Event listeners for previous and next buttons
+    document.getElementById("prevBtn").addEventListener("click", function() {
+        clearInterval(slideInterval); // Stop automatic sliding on button click
+        prevSlide();
+        startSlide(); // Restart automatic sliding after manual change
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", function() {
+        clearInterval(slideInterval); // Stop automatic sliding on button click
+        nextSlide();
+        startSlide(); // Restart automatic sliding after manual change
+    });
+
+    // Start the carousel
+    showSlide(currentIndex);
+    startSlide();
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const carouselItems = document.querySelectorAll(".carousel-item a");
+    const headerHeight = document.querySelector("header").offsetHeight;
+
+    carouselItems.forEach(item => {
+        item.addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default anchor behavior
+
+            const targetId = item.getAttribute("href").substring(1); // Get target section ID
+
+            // Calculate the offset from the top considering the fixed header
+            const targetOffsetTop = document.getElementById(targetId).offsetTop - headerHeight;
+
+            // Scroll to the target section smoothly
+            window.scrollTo({
+                top: targetOffsetTop,
+                behavior: "smooth"
+            });
+        });
+    });
+});
+// Modal functions
+function openModal() {
+            document.getElementById('myModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function (event) {
+            const modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            document.getElementById('myModal').style.display = 'none';
+
+            // Show popup
+            const popup = document.getElementById('popup');
+            const popupMessage = document.getElementById('popupMessage');
+            popupMessage.textContent = `${name}, you have been registered for the event successfully.`;
+            popup.style.display = 'block';
+        });
+
+        // Function to close the popup
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+
+
+    </script>
+</body>
+</html>

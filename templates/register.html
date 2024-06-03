@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Register for Event</h2>
+<form method="POST">
+    <label for="user_name">Your Name:</label>
+    <input type="text" name="user_name" id="user_name" required>
+    <button type="submit">Register</button>
+</form>
+{% endblock %}
